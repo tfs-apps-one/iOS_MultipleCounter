@@ -12,6 +12,8 @@ struct MultipleCounterApp: App {
     var body: some Scene {
         WindowGroup {
             ContentView()
+                // アプリ全体をライトモード固定（ダークモード無効）
+                .preferredColorScheme(.light)
         }
     }
 }
