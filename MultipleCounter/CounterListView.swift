@@ -29,7 +29,7 @@ struct CounterListView: View {
                             )
 
                         // 名前入力
-                        TextField("名前", text: $item.name)
+                        TextField(String(localized: "placeholder_name"), text: $item.name)
                             .textFieldStyle(.roundedBorder)
                             .submitLabel(.done)
                             .onSubmit { store.save() }
@@ -50,13 +50,13 @@ struct CounterListView: View {
                 }
             }
             .listStyle(.plain)
-            .navigationTitle("一覧（タップで編集）")
+            .navigationTitle(String(localized: "list_nav_title"))
             .navigationBarTitleDisplayMode(.inline)
             .toolbar {
                 // キーボードの上に「閉じる」ボタンを出して数値入力を確定しやすくする
                 ToolbarItemGroup(placement: .keyboard) {
                     Spacer()
-                    Button("閉じる") {
+                    Button(String(localized: "btn_close")) {
                         UIApplication.shared.sendAction(
                             #selector(UIResponder.resignFirstResponder),
                             to: nil, from: nil, for: nil
@@ -65,7 +65,7 @@ struct CounterListView: View {
                     }
                 }
                 ToolbarItem(placement: .confirmationAction) {
-                    Button("完了") {
+                    Button(String(localized: "btn_done")) {
                         store.save()
                         dismiss()
                     }

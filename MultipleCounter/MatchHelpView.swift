@@ -1,13 +1,13 @@
 //
-//  HelpView.swift
+//  MatchHelpView.swift
 //  MultipleCounter
 //
-//  アプリの使い方を表示するシート
+//  試合モードの使い方を表示するシート
 //
 
 import SwiftUI
 
-struct HelpView: View {
+struct MatchHelpView: View {
     @Environment(\.dismiss) private var dismiss
 
     var body: some View {
@@ -18,6 +18,13 @@ struct HelpView: View {
 
                     Divider()
                         .background(Color.black.opacity(0.2))
+
+                    HelpRow(
+                        icon: "square.split.2x1.fill",
+                        iconColor: .blue,
+                        title: String(localized: "match_help_group_title"),
+                        description: String(localized: "match_help_group_desc")
+                    )
 
                     HelpRow(
                         icon: "hand.tap.fill",
@@ -34,10 +41,10 @@ struct HelpView: View {
                     )
 
                     HelpRow(
-                        icon: "list.bullet.rectangle",
-                        iconColor: .green,
-                        title: String(localized: "help_list_title"),
-                        description: String(localized: "help_list_desc")
+                        icon: "pencil",
+                        iconColor: .purple,
+                        title: String(localized: "match_help_edit_name_title"),
+                        description: String(localized: "match_help_edit_name_desc")
                     )
 
                     HelpRow(
@@ -48,10 +55,10 @@ struct HelpView: View {
                     )
 
                     HelpRow(
-                        icon: "externaldrive.fill.badge.checkmark",
+                        icon: "chevron.backward",
                         iconColor: .indigo,
-                        title: String(localized: "help_autosave_title"),
-                        description: String(localized: "help_autosave_desc")
+                        title: String(localized: "btn_back_to_menu"),
+                        description: String(localized: "match_help_back_desc")
                     )
                 }
                 .padding(20)
@@ -71,7 +78,7 @@ struct HelpView: View {
                 .ignoresSafeArea()
             )
             .scrollContentBackground(.hidden)
-            .navigationTitle(String(localized: "help_nav_title"))
+            .navigationTitle(String(localized: "match_help_nav_title"))
             .navigationBarTitleDisplayMode(.inline)
             .toolbarBackground(Color(.systemGray5), for: .navigationBar)
             .toolbarBackground(.visible, for: .navigationBar)
@@ -87,14 +94,14 @@ struct HelpView: View {
 
     private var headerSection: some View {
         HStack(spacing: 12) {
-            Image(systemName: "questionmark.circle.fill")
+            Image(systemName: "sportscourt.fill")
                 .font(.system(size: 36))
-                .foregroundColor(.blue)
+                .foregroundColor(.red)
             VStack(alignment: .leading, spacing: 2) {
-                Text(String(localized: "help_header_title"))
+                Text(String(localized: "match_help_header_title"))
                     .font(.title3).bold()
                     .foregroundColor(.black)
-                Text(String(localized: "help_header_subtitle"))
+                Text(String(localized: "match_help_header_subtitle"))
                     .font(.footnote)
                     .foregroundColor(.black.opacity(0.7))
             }
@@ -129,5 +136,5 @@ private struct HelpRow: View {
 }
 
 #Preview {
-    HelpView()
+    MatchHelpView()
 }

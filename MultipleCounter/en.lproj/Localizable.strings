@@ -1,0 +1,79 @@
+/* ContentView */
+"nav_title_counter" = "Counter";
+"btn_reset_all" = "Reset All";
+"accessibility_reset_all" = "Reset All";
+"accessibility_show_help" = "Show Help";
+"btn_list" = "List";
+"accessibility_show_list" = "Show List";
+"alert_reset_title" = "Reset All?";
+"btn_cancel" = "Cancel";
+"btn_reset" = "Reset";
+"alert_reset_message" = "Reset all counts to 0.\n(Label names will not be changed.)";
+
+/* CounterCell */
+"accessibility_counter_label_format" = "%@, current count %d";
+"accessibility_counter_hint" = "Tap to increase by 1, long press to decrease by 1";
+
+/* CounterListView */
+"placeholder_name" = "Name";
+"list_nav_title" = "List (Tap to Edit)";
+"btn_close" = "Close";
+"btn_done" = "Done";
+
+/* HelpView */
+"help_nav_title" = "How to Use";
+"help_header_title" = "How to Use x20 Counter";
+"help_header_subtitle" = "Manage up to 20 counters";
+"help_tap_title" = "Tap: +1";
+"help_tap_desc" = "Lightly tap a label on the main screen to increase its count by 1.";
+"help_longpress_title" = "Long Press: −1";
+"help_longpress_desc" = "Long press a label (approx. 0.5 sec) to decrease its count by 1. Negative values are also saved.";
+"help_list_title" = "Edit All in List";
+"help_list_desc" = "Tap the “List” button at the top right to view all labels vertically.\nYou can rename labels on the spot, and tap the count number to edit it directly (enter any value).";
+"help_reset_desc" = "The “Reset All” button at the top left resets all counts to 0. Label names are preserved.";
+"help_autosave_title" = "Auto Save";
+"help_autosave_desc" = "Label names and counts are saved when you close the app and restored on the next launch.";
+
+/* CounterModels */
+"default_label_format" = "Label %d";
+
+/* Common */
+"btn_back_to_menu" = "Menu";
+"accessibility_back_to_menu" = "Back to menu";
+
+/* ModeSelectionView */
+"mode_selection_nav_title" = "x20 Counter";
+"mode_selection_header_title" = "Choose a Mode";
+"mode_selection_header_subtitle" = "Pick the mode that fits how you'll use it";
+"mode_normal_title" = "Normal Mode";
+"mode_normal_desc" = "Freely track 20 individual counters";
+"mode_match_title" = "Match Mode";
+"mode_match_desc" = "Labels 1-10 form Group A, 11-20 form Group B, with live totals";
+"accessibility_select_normal_mode" = "Select Normal Mode";
+"accessibility_select_match_mode" = "Select Match Mode";
+
+/* MatchModeView */
+"match_nav_title" = "Match Mode";
+"match_group_a_title" = "Group A";
+"match_group_b_title" = "Group B";
+"match_group_a_range" = "Labels 1-10";
+"match_group_b_range" = "Labels 11-20";
+"btn_edit_group_names" = "Edit Names";
+"accessibility_edit_group_names" = "Edit group names";
+"accessibility_show_match_help" = "Show Match Mode help";
+
+/* MatchGroupNameEditView */
+"match_group_name_edit_nav_title" = "Edit Group Names";
+"match_group_name_edit_desc" = "Change the names shown on the scoreboard and section headers for each group.";
+"match_group_a_field_label" = "Group A Name (Labels 1-10)";
+"match_group_b_field_label" = "Group B Name (Labels 11-20)";
+
+/* MatchHelpView */
+"match_help_nav_title" = "How to Use Match Mode";
+"match_help_header_title" = "How to Use Match Mode";
+"match_help_header_subtitle" = "Compare live totals between Group A and Group B";
+"match_help_group_title" = "Grouping";
+"match_help_group_desc" = "Labels 1-10 are automatically combined into Group A, and 11-20 into Group B. Each group's total is shown live at the top.";
+"match_help_edit_name_title" = "Renaming Groups";
+"match_help_edit_name_desc" = "Tap the pencil button at the top right to freely rename Group A and Group B.";
+"match_help_back_desc" = "The button at the top left returns you to the mode selection screen.";

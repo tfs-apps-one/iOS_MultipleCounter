@@ -13,11 +13,12 @@
 import SwiftUI
 
 struct ContentView: View {
-    @StateObject private var store = CounterStore()
+    @ObservedObject var store: CounterStore
     @State private var showingList = false
     @State private var showingResetAlert = false
     @State private var showingHelp = false
     @Environment(\.scenePhase) private var scenePhase
+    @Environment(\.dismiss) private var dismiss
 
     // 画面幅に応じて2〜3列で並ぶよう自動調整。
     // 20個入らない場合は縦スクロール。
@@ -56,41 +57,49 @@ struct ContentView: View {
                 }
                 .scrollContentBackground(.hidden)
             }
-            .navigationTitle("カウンター")
+            .navigationTitle(String(localized: "nav_title_counter"))
             .navigationBarTitleDisplayMode(.inline)
             // ナビゲーションバー（リセット／一覧／タイトル）の背景をグレーに固定
-            .toolbarBackground(Color(.systemGray5), for: .navigationBar)
+            .toolbarBackground(Color(.systemGray4), for: .navigationBar)
             .toolbarBackground(.visible, for: .navigationBar)
             .toolbar {
                 ToolbarItem(placement: .topBarLeading) {
                     Button {
+                        dismiss()
+                    } label: {
+                        Label(String(localized: "btn_back_to_menu"), systemImage: "chevron.backward")
+                    }
+                    .accessibilityLabel(String(localized: "accessibility_back_to_menu"))
+                }
+                ToolbarItem(placement: .topBarLeading) {
+                    Button {
                         showingResetAlert = true
                     } label: {
-                        Label("全リセット", systemImage: "arrow.counterclockwise.circle")
+                        Label(String(localized: "btn_reset_all"), systemImage: "arrow.counterclockwise.circle")
                     }
                     .tint(.red)
-                    .accessibilityLabel("全リセット")
+                    .accessibilityLabel(String(localized: "accessibility_reset_all"))
                 }
                 ToolbarItem(placement: .principal) {
                     // タイトル中央付近に「?」ヘルプボタンを配置
                     HStack(spacing: 6) {
-                        Text("カウンター").font(.headline)
+                        Text(String(localized: "nav_title_counter")).font(.headline)
                         Button {
                             showingHelp = true
                         } label: {
                             Image(systemName: "questionmark.circle")
                                 .font(.system(size: 18, weight: .semibold))
                         }
-                        .accessibilityLabel("使い方を表示")
+                        .accessibilityLabel(String(localized: "accessibility_show_help"))
                     }
                 }
                 ToolbarItem(placement: .topBarTrailing) {
                     Button {
                         showingList = true
                     } label: {
-                        Label("一覧", systemImage: "list.bullet.rectangle")
+                        Label(String(localized: "btn_list"), systemImage: "list.bullet.rectangle")
                     }
-                    .accessibilityLabel("一覧を表示")
+                    .accessibilityLabel(String(localized: "accessibility_show_list"))
                 }
             }
             .sheet(isPresented: $showingList) {
@@ -99,13 +108,13 @@ struct ContentView: View {
             .sheet(isPresented: $showingHelp) {
                 HelpView()
             }
-            .alert("全リセットしますか？", isPresented: $showingResetAlert) {
-                Button("キャンセル", role: .cancel) {}
-                Button("リセット", role: .destructive) {
+            .alert(String(localized: "alert_reset_title"), isPresented: $showingResetAlert) {
+                Button(String(localized: "btn_cancel"), role: .cancel) {}
+                Button(String(localized: "btn_reset"), role: .destructive) {
                     store.resetAll()
                 }
             } message: {
-                Text("すべてのカウント数を0に戻します。\n（ラベル名は変更されません）")
+                Text(String(localized: "alert_reset_message"))
             }
             .onChange(of: scenePhase) { _, newPhase in
                 // バックグラウンド/非アクティブ移行時に念のため保存
@@ -118,5 +127,5 @@ struct ContentView: View {
 }
 
 #Preview {
-    ContentView()
+    ContentView(store: CounterStore())
 }

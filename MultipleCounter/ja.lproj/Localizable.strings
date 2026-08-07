@@ -1,0 +1,79 @@
+/* ContentView */
+"nav_title_counter" = "カウンター";
+"btn_reset_all" = "全リセット";
+"accessibility_reset_all" = "全リセット";
+"accessibility_show_help" = "使い方を表示";
+"btn_list" = "一覧";
+"accessibility_show_list" = "一覧を表示";
+"alert_reset_title" = "全リセットしますか？";
+"btn_cancel" = "キャンセル";
+"btn_reset" = "リセット";
+"alert_reset_message" = "すべてのカウント数を0に戻します。\n（ラベル名は変更されません）";
+
+/* CounterCell */
+"accessibility_counter_label_format" = "%@、現在のカウント %d";
+"accessibility_counter_hint" = "タップで1増やし、長押しで1減らします";
+
+/* CounterListView */
+"placeholder_name" = "名前";
+"list_nav_title" = "一覧（タップで編集）";
+"btn_close" = "閉じる";
+"btn_done" = "完了";
+
+/* HelpView */
+"help_nav_title" = "使い方";
+"help_header_title" = "x20カウンター の使い方";
+"help_header_subtitle" = "最大20個までのカウントを管理できます";
+"help_tap_title" = "タップで ＋1";
+"help_tap_desc" = "メイン画面のラベルを軽くタップすると、そのカウントが1増えます。";
+"help_longpress_title" = "長押しで －1";
+"help_longpress_desc" = "ラベルを長押し（約0.5秒）するとカウントが1減ります。マイナスの値も保存できます。";
+"help_list_title" = "一覧でまとめて編集";
+"help_list_desc" = "右上の「一覧」ボタンを押すと、すべてのラベルを縦に並べて確認できます。\nラベル名はその場で書き換えられ、カウント数の数字部分をタップすれば直接編集（任意の数値に修正）も可能です。";
+"help_reset_desc" = "左上の「全リセット」ボタンですべてのカウントを0に戻します。ラベル名は維持されます。";
+"help_autosave_title" = "自動保存";
+"help_autosave_desc" = "ラベル名とカウント数はアプリを閉じても保存され、次回起動時に復元されます。";
+
+/* CounterModels */
+"default_label_format" = "ラベル%d";
+
+/* 共通 */
+"btn_back_to_menu" = "メニュー";
+"accessibility_back_to_menu" = "メニューに戻る";
+
+/* ModeSelectionView */
+"mode_selection_nav_title" = "x20カウンター";
+"mode_selection_header_title" = "モードを選択";
+"mode_selection_header_subtitle" = "使い方に合わせてモードを選んでください";
+"mode_normal_title" = "通常モード";
+"mode_normal_desc" = "20個のカウンターを自由に記録します";
+"mode_match_title" = "試合モード";
+"mode_match_desc" = "ラベル1〜10をAグループ、11〜20をBグループとして合計値を表示します";
+"accessibility_select_normal_mode" = "通常モードを選択";
+"accessibility_select_match_mode" = "試合モードを選択";
+
+/* MatchModeView */
+"match_nav_title" = "試合モード";
+"match_group_a_title" = "Aグループ";
+"match_group_b_title" = "Bグループ";
+"match_group_a_range" = "ラベル1〜10";
+"match_group_b_range" = "ラベル11〜20";
+"btn_edit_group_names" = "グループ名編集";
+"accessibility_edit_group_names" = "グループ名を編集";
+"accessibility_show_match_help" = "試合モードの使い方を表示";
+
+/* MatchGroupNameEditView */
+"match_group_name_edit_nav_title" = "グループ名の編集";
+"match_group_name_edit_desc" = "スコアボードや一覧に表示される各グループの名前を自由に変更できます。";
+"match_group_a_field_label" = "Aグループの名前（ラベル1〜10）";
+"match_group_b_field_label" = "Bグループの名前（ラベル11〜20）";
+
+/* MatchHelpView */
+"match_help_nav_title" = "試合モードの使い方";
+"match_help_header_title" = "試合モード の使い方";
+"match_help_header_subtitle" = "AグループとBグループの合計をリアルタイムで競います";
+"match_help_group_title" = "グループ分け";
+"match_help_group_desc" = "ラベル1〜10がAグループ、11〜20がBグループとして自動的にまとめられ、それぞれの合計値が上部にリアルタイム表示されます。";
+"match_help_edit_name_title" = "グループ名の変更";
+"match_help_edit_name_desc" = "右上の✏️ボタンから、AグループとBグループの表示名を自由に変更できます。";
+"match_help_back_desc" = "左上のボタンでモード選択画面に戻ります。";

@@ -62,7 +62,13 @@ final class CounterStore: ObservableObject {
 
     @Published var items: [CounterItem] = []
 
+    /// 試合モードのAグループ／Bグループの表示名（編集可能・永続化対象）
+    @Published var groupAName: String = ""
+    @Published var groupBName: String = ""
+
     private let storageKey = "MultipleCounter.items.v1"
+    private let groupANameKey = "MultipleCounter.groupAName.v1"
+    private let groupBNameKey = "MultipleCounter.groupBName.v1"
     private let defaults: UserDefaults
 
     init(defaults: UserDefaults = .standard) {
@@ -79,16 +85,21 @@ final class CounterStore: ObservableObject {
             items = decoded
         } else {
             items = (0..<counterTotal).map { idx in
-                CounterItem(id: idx, name: "ラベル\(idx + 1)", count: 0)
+                CounterItem(id: idx, name: String(format: NSLocalizedString("default_label_format", comment: ""), idx + 1), count: 0)
             }
             save()
         }
+
+        groupAName = defaults.string(forKey: groupANameKey) ?? NSLocalizedString("match_group_a_title", comment: "")
+        groupBName = defaults.string(forKey: groupBNameKey) ?? NSLocalizedString("match_group_b_title", comment: "")
     }
 
     func save() {
         if let data = try? JSONEncoder().encode(items) {
             defaults.set(data, forKey: storageKey)
         }
+        defaults.set(groupAName, forKey: groupANameKey)
+        defaults.set(groupBName, forKey: groupBNameKey)
     }
 
     // MARK: 操作
@@ -122,4 +133,31 @@ final class CounterStore: ObservableObject {
     func color(for id: Int) -> CounterColor {
         counterColors[id % counterColors.count]
     }
+
+    // MARK: - 試合モード用グループ集計
+
+    /// Aグループ（ラベル1〜10 / index 0〜9）の合計値
+    var groupASum: Int {
+        items.filter { matchGroupARange.contains($0.id) }.reduce(0) { $0 + $1.count }
+    }
+
+    /// Bグループ（ラベル11〜20 / index 10〜19）の合計値
+    var groupBSum: Int {
+        items.filter { matchGroupBRange.contains($0.id) }.reduce(0) { $0 + $1.count }
+    }
+
+    /// Aグループに属するアイテム（ラベル1〜10）
+    var groupAItems: [CounterItem] {
+        items.filter { matchGroupARange.contains($0.id) }
+    }
+
+    /// Bグループに属するアイテム（ラベル11〜20）
+    var groupBItems: [CounterItem] {
+        items.filter { matchGroupBRange.contains($0.id) }
+    }
 }
+
+/// Aグループのindex範囲（ラベル1〜10）
+let matchGroupARange: Range<Int> = 0..<10
+/// Bグループのindex範囲（ラベル11〜20）
+let matchGroupBRange: Range<Int> = 10..<20

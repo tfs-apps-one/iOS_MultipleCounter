@@ -56,8 +56,8 @@ struct CounterCell: View {
             onIncrement()
         }
         .accessibilityElement(children: .combine)
-        .accessibilityLabel("\(item.name)、現在のカウント \(item.count)")
-        .accessibilityHint("タップで1増やし、長押しで1減らします")
+        .accessibilityLabel(String(format: NSLocalizedString("accessibility_counter_label_format", comment: ""), item.name, item.count))
+        .accessibilityHint(String(localized: "accessibility_counter_hint"))
     }
 
     private func triggerHaptic(style: HapticStyle) {
