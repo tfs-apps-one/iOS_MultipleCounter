@@ -77,3 +77,35 @@
 "match_help_edit_name_title" = "グループ名の変更";
 "match_help_edit_name_desc" = "右上の✏️ボタンから、AグループとBグループの表示名を自由に変更できます。";
 "match_help_back_desc" = "左上のボタンでモード選択画面に戻ります。";
+
+/* MatchSettingsView（歯車：ラベル名・グループ名・タイマー値の設定） */
+"btn_match_settings" = "設定";
+"accessibility_match_settings" = "試合モードの設定を開く";
+"match_settings_nav_title" = "試合モードの設定";
+"match_settings_desc" = "ラベル名・グループ名・タイマーの時間をまとめて設定できます。";
+"match_settings_labels_group_a_header" = "Aグループのラベル名（ラベル1〜10）";
+"match_settings_labels_group_b_header" = "Bグループのラベル名（ラベル11〜20）";
+"match_settings_section_groups" = "グループ名称の設定";
+"match_settings_section_timer" = "タイマー値の設定";
+"match_settings_timer_desc" = "試合モード画面のスコアボード上に表示するカウントダウンタイマーの開始時間を設定します。";
+"match_settings_timer_minutes_label" = "分";
+"match_settings_timer_seconds_label" = "秒";
+"match_settings_timer_minutes_unit" = "分";
+"match_settings_timer_seconds_unit" = "秒";
+"match_settings_timer_current_format" = "設定時間: %@";
+
+/* MatchModeView（試合タイマー表示） */
+"match_timer_time_up" = "タイムアップ！";
+"btn_timer_start" = "開始";
+"btn_timer_pause" = "一時停止";
+"btn_timer_reset" = "リセット";
+"accessibility_timer_start" = "タイマーを開始";
+"accessibility_timer_pause" = "タイマーを一時停止";
+"accessibility_timer_reset" = "タイマーをリセット";
+"accessibility_timer_value_format" = "残り時間 %@";
+
+/* MatchHelpView（追加分） */
+"match_help_settings_title" = "設定（ラベル名・グループ名・タイマー）";
+"match_help_settings_desc" = "右上の⚙️ボタンから、ラベル名・グループ名・タイマーの時間をまとめて設定できます。";
+"match_help_timer_title" = "カウントダウンタイマー";
+"match_help_timer_desc" = "スコアボードの上に表示されるタイマーで試合時間をカウントダウンできます。開始・一時停止・リセットのボタンで操作でき、0になるとブザーが鳴ります。";

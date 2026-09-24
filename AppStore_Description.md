@@ -81,3 +81,36 @@ Great For
 ・Team scoring or head-to-head group competitions (NEW)
 
 Stripped of everything unnecessary — experience the ultimate simplicity built for one purpose: counting.
+
+---
+
+# 試合モード新機能アップデート用テキスト（設定画面・タイマー・ブザー）
+
+App Store Connect の「プロモーションテキスト」と「このバージョンの新機能」に貼り付けて使う文章です。
+既存の説明文と同じトーン・「・」箇条書きで統一しています。
+
+## プロモーションテキスト（Promotional Text／上限170文字・審査不要で更新可）
+
+### 日本語（71文字）
+試合モードがパワーアップ！ラベル名・グループ名・タイマー時間をまとめて設定でき、カウントダウン終了はブザー音とバイブでしっかりお知らせします。
+
+### English (140 characters)
+Match Mode leveled up: set labels, group names, and timer duration in one place. A buzzer + vibration now alert you when the countdown ends.
+
+## このバージョンの新機能（What's New in This Version）
+
+### 日本語
+試合モードに新機能を追加しました。
+
+・新しい設定画面（右上の歯車ボタン）から、ラベル名・グループ名・タイマーの時間をまとめて編集できるようになりました
+・スコアボードの上にカウントダウンタイマーを表示。設定した時間から試合時間をカウントダウンできます
+・タイマーが0になると、ブザー音とバイブレーションでお知らせします
+・試合モードのヘルプ画面を更新し、新機能の使い方を追記しました
+
+### English
+We've added new features to Match Mode.
+
+・A new settings screen (tap the gear icon) lets you edit label names, group names, and the timer duration all in one place
+・A countdown timer is now shown above the scoreboard, counting down the match time you set
+・When the timer reaches zero, a buzzer sound and vibration let you know
+・The Match Mode help screen has been updated to cover the new features

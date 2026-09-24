@@ -54,6 +54,9 @@ let counterColors: [CounterColor] = [
 /// カウンターの個数（要件: 最大20個）
 let counterTotal: Int = 20
 
+/// 試合モードのタイマー既定値（秒）＝3分
+let defaultMatchTimerDurationSeconds: Int = 180
+
 // MARK: - 永続化付きストア
 
 /// UserDefaults を使って状態を永続化するストア。
@@ -66,9 +69,13 @@ final class CounterStore: ObservableObject {
     @Published var groupAName: String = ""
     @Published var groupBName: String = ""
 
+    /// 試合モードのカウントダウンタイマーの設定時間（秒・編集可能・永続化対象）
+    @Published var timerDurationSeconds: Int = defaultMatchTimerDurationSeconds
+
     private let storageKey = "MultipleCounter.items.v1"
     private let groupANameKey = "MultipleCounter.groupAName.v1"
     private let groupBNameKey = "MultipleCounter.groupBName.v1"
+    private let timerDurationSecondsKey = "MultipleCounter.timerDurationSeconds.v1"
     private let defaults: UserDefaults
 
     init(defaults: UserDefaults = .standard) {
@@ -92,6 +99,12 @@ final class CounterStore: ObservableObject {
 
         groupAName = defaults.string(forKey: groupANameKey) ?? NSLocalizedString("match_group_a_title", comment: "")
         groupBName = defaults.string(forKey: groupBNameKey) ?? NSLocalizedString("match_group_b_title", comment: "")
+
+        if defaults.object(forKey: timerDurationSecondsKey) != nil {
+            timerDurationSeconds = defaults.integer(forKey: timerDurationSecondsKey)
+        } else {
+            timerDurationSeconds = defaultMatchTimerDurationSeconds
+        }
     }
 
     func save() {
@@ -100,6 +113,7 @@ final class CounterStore: ObservableObject {
         }
         defaults.set(groupAName, forKey: groupANameKey)
         defaults.set(groupBName, forKey: groupBNameKey)
+        defaults.set(timerDurationSeconds, forKey: timerDurationSecondsKey)
     }
 
     // MARK: 操作

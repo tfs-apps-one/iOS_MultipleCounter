@@ -77,3 +77,35 @@
 "match_help_edit_name_title" = "Renaming Groups";
 "match_help_edit_name_desc" = "Tap the pencil button at the top right to freely rename Group A and Group B.";
 "match_help_back_desc" = "The button at the top left returns you to the mode selection screen.";
+
+/* MatchSettingsView (gear: label names, group names, timer duration) */
+"btn_match_settings" = "Settings";
+"accessibility_match_settings" = "Open Match Mode settings";
+"match_settings_nav_title" = "Match Mode Settings";
+"match_settings_desc" = "Set label names, group names, and the timer duration all in one place.";
+"match_settings_labels_group_a_header" = "Group A Labels (1-10)";
+"match_settings_labels_group_b_header" = "Group B Labels (11-20)";
+"match_settings_section_groups" = "Group Names";
+"match_settings_section_timer" = "Timer Duration";
+"match_settings_timer_desc" = "Set the starting time for the countdown timer shown above the scoreboard on the Match Mode screen.";
+"match_settings_timer_minutes_label" = "Minutes";
+"match_settings_timer_seconds_label" = "Seconds";
+"match_settings_timer_minutes_unit" = "min";
+"match_settings_timer_seconds_unit" = "sec";
+"match_settings_timer_current_format" = "Timer: %@";
+
+/* MatchModeView (match timer display) */
+"match_timer_time_up" = "Time's Up!";
+"btn_timer_start" = "Start";
+"btn_timer_pause" = "Pause";
+"btn_timer_reset" = "Reset";
+"accessibility_timer_start" = "Start timer";
+"accessibility_timer_pause" = "Pause timer";
+"accessibility_timer_reset" = "Reset timer";
+"accessibility_timer_value_format" = "Time remaining %@";
+
+/* MatchHelpView (additions) */
+"match_help_settings_title" = "Settings (Labels, Groups, Timer)";
+"match_help_settings_desc" = "Tap the ⚙️ button at the top right to set label names, group names, and the timer duration all in one place.";
+"match_help_timer_title" = "Countdown Timer";
+"match_help_timer_desc" = "Use the timer above the scoreboard to count down the match time. Control it with the start, pause, and reset buttons — a buzzer sounds when it reaches zero.";

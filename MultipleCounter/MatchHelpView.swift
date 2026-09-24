@@ -27,6 +27,13 @@ struct MatchHelpView: View {
                     )
 
                     HelpRow(
+                        icon: "timer",
+                        iconColor: .green,
+                        title: String(localized: "match_help_timer_title"),
+                        description: String(localized: "match_help_timer_desc")
+                    )
+
+                    HelpRow(
                         icon: "hand.tap.fill",
                         iconColor: .blue,
                         title: String(localized: "help_tap_title"),
@@ -41,10 +48,10 @@ struct MatchHelpView: View {
                     )
 
                     HelpRow(
-                        icon: "pencil",
+                        icon: "gearshape.fill",
                         iconColor: .purple,
-                        title: String(localized: "match_help_edit_name_title"),
-                        description: String(localized: "match_help_edit_name_desc")
+                        title: String(localized: "match_help_settings_title"),
+                        description: String(localized: "match_help_settings_desc")
                     )
 
                     HelpRow(

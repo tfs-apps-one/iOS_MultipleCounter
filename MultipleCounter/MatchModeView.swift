@@ -5,6 +5,8 @@
 //  試合モード画面。
 //  ・Aグループ（ラベル1〜10）／Bグループ（ラベル11〜20）の合計値を
 //    スコアボード風に上部へリアルタイム表示
+//  ・スコアボードの上にカウントダウンタイマーを表示（⚙️で設定した時間から開始）
+//  ・タイマーが0になるとブザーを鳴らして知らせる
 //  ・各セルの操作（タップ＋1／長押し－1）は通常モードと共通
 //
 
@@ -12,8 +14,9 @@ import SwiftUI
 
 struct MatchModeView: View {
     @ObservedObject var store: CounterStore
+    @StateObject private var timerEngine = MatchTimerEngine()
     @State private var showingResetAlert = false
-    @State private var showingGroupNameEdit = false
+    @State private var showingMatchSettings = false
     @State private var showingMatchHelp = false
     @Environment(\.dismiss) private var dismiss
 
@@ -37,6 +40,8 @@ struct MatchModeView: View {
 
                 ScrollView {
                     VStack(spacing: 20) {
+                        timerSection
+
                         scoreboardSection
 
                         groupSection(
@@ -93,18 +98,18 @@ struct MatchModeView: View {
                         .accessibilityLabel(String(localized: "accessibility_show_match_help"))
                     }
                 }
-                // 右上：グループ名編集（通常モードの「一覧」ボタンに相当する位置）
+                // 右上：設定（ラベル名・グループ名・タイマー値をまとめて編集）
                 ToolbarItem(placement: .topBarTrailing) {
                     Button {
-                        showingGroupNameEdit = true
+                        showingMatchSettings = true
                     } label: {
-                        Label(String(localized: "btn_edit_group_names"), systemImage: "pencil")
+                        Label(String(localized: "btn_match_settings"), systemImage: "gearshape")
                     }
-                    .accessibilityLabel(String(localized: "accessibility_edit_group_names"))
+                    .accessibilityLabel(String(localized: "accessibility_match_settings"))
                 }
             }
-            .sheet(isPresented: $showingGroupNameEdit) {
-                MatchGroupNameEditView(store: store)
+            .sheet(isPresented: $showingMatchSettings) {
+                MatchSettingsView(store: store)
             }
             .sheet(isPresented: $showingMatchHelp) {
                 MatchHelpView()
@@ -117,7 +122,84 @@ struct MatchModeView: View {
             } message: {
                 Text(String(localized: "alert_reset_message"))
             }
+            .onAppear {
+                timerEngine.configure(totalSeconds: store.timerDurationSeconds)
+            }
+            .onChange(of: store.timerDurationSeconds) { _, newValue in
+                timerEngine.configure(totalSeconds: newValue)
+            }
         }
+    }
+
+    // MARK: - タイマー
+
+    private var timerSection: some View {
+        VStack(spacing: 10) {
+            Text(timerEngine.formattedTime)
+                .font(.system(size: 48, weight: .heavy, design: .rounded))
+                .monospacedDigit()
+                .foregroundColor(timerTextColor)
+                .animation(.easeInOut(duration: 0.2), value: timerEngine.remainingSeconds)
+
+            if timerEngine.didFinish {
+                Text(String(localized: "match_timer_time_up"))
+                    .font(.subheadline).bold()
+                    .foregroundColor(.red)
+                    .transition(.opacity)
+            }
+
+            HStack(spacing: 14) {
+                Button {
+                    if timerEngine.isRunning {
+                        timerEngine.pause()
+                    } else {
+                        timerEngine.start()
+                    }
+                } label: {
+                    Label(
+                        timerEngine.isRunning ? String(localized: "btn_timer_pause") : String(localized: "btn_timer_start"),
+                        systemImage: timerEngine.isRunning ? "pause.fill" : "play.fill"
+                    )
+                    .font(.subheadline).bold()
+                }
+                .buttonStyle(.borderedProminent)
+                .tint(timerEngine.isRunning ? .orange : .green)
+                .disabled(timerEngine.remainingSeconds == 0 && !timerEngine.isRunning)
+                .accessibilityLabel(timerEngine.isRunning ? String(localized: "accessibility_timer_pause") : String(localized: "accessibility_timer_start"))
+
+                Button {
+                    timerEngine.reset()
+                } label: {
+                    Label(String(localized: "btn_timer_reset"), systemImage: "arrow.counterclockwise")
+                        .font(.subheadline).bold()
+                }
+                .buttonStyle(.bordered)
+                .tint(.gray)
+                .accessibilityLabel(String(localized: "accessibility_timer_reset"))
+            }
+        }
+        .frame(maxWidth: .infinity)
+        .padding(.vertical, 14)
+        .background(
+            RoundedRectangle(cornerRadius: 16)
+                .fill(Color.black.opacity(0.04))
+        )
+        .overlay(
+            RoundedRectangle(cornerRadius: 16)
+                .stroke(Color.black.opacity(0.08), lineWidth: 1)
+        )
+        .accessibilityElement(children: .combine)
+        .accessibilityLabel(String(format: NSLocalizedString("accessibility_timer_value_format", comment: ""), timerEngine.formattedTime))
+    }
+
+    private var timerTextColor: Color {
+        if timerEngine.didFinish {
+            return .red
+        }
+        if timerEngine.remainingSeconds <= 10 && timerEngine.remainingSeconds > 0 {
+            return .red
+        }
+        return .black.opacity(0.85)
     }
 
     // MARK: - スコアボード

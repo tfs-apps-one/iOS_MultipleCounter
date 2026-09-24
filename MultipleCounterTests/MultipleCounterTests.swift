@@ -76,6 +76,23 @@ struct MultipleCounterTests {
         #expect(store2.groupBName == "白組")
     }
 
+    // MARK: - 試合モード：タイマー値の設定・永続化
+
+    @Test func timerDurationDefaultsToThreeMinutes() async throws {
+        let store = CounterStore(defaults: Self.makeIsolatedDefaults())
+        #expect(store.timerDurationSeconds == defaultMatchTimerDurationSeconds)
+    }
+
+    @Test func timerDurationPersistsAcrossStoreInstances() async throws {
+        let defaults = Self.makeIsolatedDefaults()
+        let store1 = CounterStore(defaults: defaults)
+        store1.timerDurationSeconds = 90
+        store1.save()
+
+        let store2 = CounterStore(defaults: defaults)
+        #expect(store2.timerDurationSeconds == 90)
+    }
+
     /// テスト間で永続化データが共有されないよう、実行ごとに独立した UserDefaults を用意する。
     private static func makeIsolatedDefaults() -> UserDefaults {
         let suiteName = "MultipleCounterTests.\(UUID().uuidString)"
